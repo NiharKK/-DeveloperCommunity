@@ -19,35 +19,34 @@
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo site_url("Profile/index/".$_SESSION['uid']); ?>" title="">
+								<a href="<?php ?>" title="">
 									<span><img src="<?php echo base_url('resources/user/')?>images/icon4.png" alt=""></span>
 									Profiles
 								</a>
 								<ul>
-									<li><a href="<?php echo site_url("Profile/index/".$_SESSION['uid']); ?>" title="">User Profile</a></li>
-									<!-- <li><a href="my-profile-feed.html" title="">my-profile-feed</a></li> -->
+									<li><a href="<?php ?>" title="">User Profile</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href="<?php echo site_url('Community/loadAllCommunity') ?>" title="">
+								<a href="<?php ?>" title="">
 									<span><img src="<?php echo base_url('resources/user/')?>images/icon6.png" alt=""></span>
 									Community
 								</a>
 							</li>
 							<li>
-								<a href="<?= site_url('Meetup/loadAllMeetUp') ?>" title="">
+								<a href="<? ?>" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon3.png" alt=""></span>
 									MeetUps
 								</a>
 							</li>
 							<li>
-								<a href="<?= site_url('Post/loadAllPost') ?>" title="">
+								<a href="<? ?>" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon2.png" alt=""></span>
 									Forums
 								</a>
 							</li>
 							<li>
-								<a href="<?= site_url('Article') ?>" title="">
+								<a href="" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon9.png" alt=""></span>
 									Articles
 								</a>
