@@ -36,7 +36,7 @@ class User extends CI_Controller
 
 			$where=array("UserId"=>$_SESSION['uid']);
 			$this->um->updateUser($newdata,$where);
-			redirect("Welcome");
+			redirect("UserDemo");
 		}
 		else
 		{
@@ -57,7 +57,7 @@ class User extends CI_Controller
 	public function registerUser()
 	{
 		$img=$_FILES['fup']['name'];
-		copy($_FILES['fup']['tmp_name'], "C:/wamp/www/CommunityProject/resources/shared/images/".$img) or die("cannot upload image");
+		copy($_FILES['fup']['tmp_name'], "D:/xampp/htdocs/DeveloperCommunity/resources/shared/images/".$img) or die("cannot upload image");
 		$data=array(
 			"Username"=>$this->input->post('txtUname'),
 			"Password"=>$this->input->post('txtPwd'),
@@ -101,16 +101,17 @@ class User extends CI_Controller
 		    'protocol' => 'smtp',
 		    'smtp_host' => 'ssl://smtp.gmail.com',
 		    'smtp_port' => 465,
-		    'smtp_user' => 'communitysystem007@gmail.com',
-		    'smtp_pass' => 'community@007'
-		    //'mailtype'  => 'html', 
-		    //'charset'   => 'iso-8859-1'
+		    'smtp_user' => 'a1products0007@gmail.com',
+		    'smtp_pass' => 'fmeennrukopxtbpx',
+		    'mailtype'  => 'html', 
+		    'charset'   => 'iso-8859-1',
+			'auth'=> true
 		);
 		$email=$this->input->post('e');
   		$OTP=rand("100000","900000");
 		$this->email->initialize($config);
   			
-		$this->email->from('communitysystem007@gmail.com', 'Community System');
+		$this->email->from('a1products0007@gmail.com', 'Community System');
 		$this->email->to($email);  
 		$this->email->subject('One Time Password');  
 		$this->email->message($OTP,"is your Community System Verification Code.");
@@ -149,7 +150,37 @@ class User extends CI_Controller
 		print_r($newPwd);
 		echo "<br>";
 		print_r($conPwd);
-		
+		/*if ($x==$a) 
+		{
+			if ($newPwd==$conPwd) 
+			{
+				$data=array(
+					"Password"=>$newPwd
+				);
+				$where=array(
+					"AdminId"=>$admin[0]->AdminId
+				);
+				// print_r($data);
+				// print_r($where);
+				$this->lm->updateAdmin($data,$where);
+				redirect("admin/Login");
+				
+			}
+			else
+			{
+				$temp=array(
+					"Err"=>"New Password & Confirm Password Does not Match"
+				);
+				$this->load->view("admin/Forgotpassword",$temp);
+			}
+		}
+		else
+		{
+			$temp=array(
+				"Msg"=>"OTP is incorrect"
+			);
+			$this->load->view("admin/Forgotpassword",$temp);
+		}*/
 	}
 }
 ?>
