@@ -19,28 +19,28 @@
 								</a>
 							</li>
 							<li>
-								<a href="<?php ?>" title="">
+								<a href="<?php echo site_url("Profile/index/".$_SESSION['uid']); ?>" title="">
 									<span><img src="<?php echo base_url('resources/user/')?>images/icon4.png" alt=""></span>
 									Profiles
 								</a>
 								<ul>
-									<li><a href="<?php ?>" title="">User Profile</a></li>
+									<li><a href="<?php echo site_url("Profile/index/".$_SESSION['uid']); ?>" title="">User Profile</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href="<?php ?>" title="">
+								<a href="<?php echo site_url('Community/loadAllCommunity') ?>" title="">
 									<span><img src="<?php echo base_url('resources/user/')?>images/icon6.png" alt=""></span>
 									Community
 								</a>
 							</li>
 							<li>
-								<a href="<? ?>" title="">
+								<a href="<?= site_url('Meetup/loadAllMeetUp') ?>" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon3.png" alt=""></span>
 									MeetUps
 								</a>
 							</li>
 							<li>
-								<a href="<? ?>" title="">
+								<a href="<?= site_url('Post/loadAllPost') ?>" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon2.png" alt=""></span>
 									Forums
 								</a>
