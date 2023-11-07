@@ -57,7 +57,7 @@ class User extends CI_Controller
 	public function registerUser()
 	{
 		$img=$_FILES['fup']['name'];
-		copy($_FILES['fup']['tmp_name'], "D:/xampp/htdocs/DeveloperCommunity/resources/shared/images/".$img) or die("cannot upload image");
+		copy($_FILES['fup']['tmp_name'], "C:/xampp/htdocs/DeveloperCommunity/resources/shared/images/".$img) or die("cannot upload image");
 		$data=array(
 			"Username"=>$this->input->post('txtUname'),
 			"Password"=>$this->input->post('txtPwd'),
@@ -124,11 +124,6 @@ class User extends CI_Controller
 		{
 			echo $this->email->print_debugger();		
 		}
-	}
-
-	public function loadForgetPassword()
-	{
-		$this->load->view("Forgotpassword");
 	}
 
 	public function ChangePassword()

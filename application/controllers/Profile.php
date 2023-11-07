@@ -95,7 +95,7 @@ class Profile extends CI_Controller
 			"UserId"=>$uid
 		);
 		$img=$_FILES['fup']['name'];
-		copy($_FILES['fup']['tmp_name'], "D:/xampp/htdocs/DeveloperCommunity/resources/shared/images/".$img) or die("cannot upload image");
+		copy($_FILES['fup']['tmp_name'], "C:/xampp/htdocs/DeveloperCommunity/resources/shared/images/".$img) or die("cannot upload image");
 		if ($img=="") 
 		{
 			redirect("Profile/index/$uid");
