@@ -39,5 +39,28 @@ class Post extends CI_Controller
 		// echo "</pre>";
 		$this->load->view("PostInfo",$temp);
 	}
+
+	public function loadLikes($fpid,$fid,$uid)
+	{
+		$data=array("forumpostid"=>$fpid);
+		$d2=array(
+			"forumid"=>$fid
+		);
+		$d3=array(
+			"forumpostid"=>$fpid,
+			"UserId"=>$uid
+		);
+		$message=$this->pm->selectForumPostByUserId($data);
+		$temp=array(
+			"Likes"=>$this->pm->selectPostLikeByForumPostId($data),
+			"pInfo"=>$this->pm->selectForumById($d2),
+			"Message"=>$this->pm->selectForumPostByForumId($d2),
+			"Msg"=>$message
+		);
+		// echo "<pre>";
+		// print_r($message);
+		// echo "</pre>";
+		$this->load->view("PostLikeInfo",$temp);
+	}
 }
 ?>

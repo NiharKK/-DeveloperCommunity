@@ -57,6 +57,17 @@ class UserDemo extends CI_Controller
 		$this->load->view('CommunityProfile',$temp);
 	}
 	
+	public function romoveCommunityCurator($uid,$cid)
+	{
+		$data=array(
+			"UserId"=>$uid,
+			"CommunityId"=>$cid
+		);
+		//print_r($data);	
+		$this->udm->deleteCommunityCuratorRequest($data);
+		redirect("UserDemo/loadProfile/$cid");
+	}
+
 	public function addCommunityCurator($uid,$cid)
 	{
 		$data=array(

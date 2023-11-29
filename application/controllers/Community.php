@@ -246,6 +246,125 @@ class Community extends CI_Controller
 		//print_r($data);
 		redirect("Community/loadForumPost/$fid/$cid");
 	}
+
+	public function loadLikes($fpid,$fid,$uid)
+	{
+		$data=array(
+			"ForumPostId"=>$fpid,
+			"UserId"=>$uid
+		);
+
+		$d2=array(
+			"ForumId"=>$fid
+		);
+
+		$d3=array(
+			"ForumPostId"=>$fpid
+		);
+
+		$d4=array(
+			"UserId"=>$_SESSION['uid'],
+			"ForumId"=>$fid
+		);
+		//$Msg=$m;
+		//$a=$this->cm->selectForumPostByUserId($d4);
+		$a=$this->cm->selectPostByUserId($d3);
+		// $d5=array(
+		// 	"UserId"=>$_SESSION['uid'],
+		// 	"ForumPostId"=>$fpid
+		// );
+		$count=count($this->cm->checkLike($data));
+
+		if ($count==0)
+		{
+			$likeStatus="No";
+		}
+		else
+		{
+			$likeStatus="Yes";	
+		}
+
+		$temp=array(
+			"Likers"=>$this->cm->selectPostLikeByForumPostId($d3),
+			"Likes"=>count($this->cm->selectPostLikeByForumPostId($d3)),
+			"Messages"=>$this->cm->selectAllForumPostByForumId($d2),
+			"likeStatus"=>$likeStatus,
+			"ForumPostId"=>$fpid,
+			"Msg"=>$a
+		);
+		// echo "<pre>";
+		// print_r($a);
+		// echo "</pre>";
+		$this->load->view("Likes",$temp);
+	}
+
+	public function like($fpid,$fid,$uid)
+	{
+		$data=array(
+			"ForumPostId"=>$fpid,
+			"UserId"=>$uid
+		);
+		// print_r($data);
+		$this->cm->LikePost($data);
+		redirect("Community/loadLikes/$fpid/$fid/$uid");
+	}
+
+	public function unlike($fpid,$fid,$uid)
+	{
+		$data=array(
+			"ForumPostId"=>$fpid,
+			"UserId"=>$uid
+		);
+		//print_r($data);
+		$this->cm->UnlikePost($data);
+		redirect("Community/loadLikes/$fpid/$fid/$uid");
+	}
+
+	public function loadCommunityQuestionsByCommunityId($cid)
+	{
+		$data=array("CommunityId"=>$cid);
+		$d2=array("UserId"=>$_SESSION['uid']);
+		
+		$Community=$this->cm->selectCommunitybyUserId($d2);
+		// echo "<pre>";
+		// print_r($Community);
+		// echo "</pre>";
+		if ($Community[0]->UserId==$_SESSION['uid']) 
+		{
+			$temp=array(
+				"Questions"=>$this->cm->selectCommunityQuestionsByCommunityId($data),
+				"CommunityId"=>$cid,
+				"Msg"=>"Ok"
+			);
+			$this->load->view("Query",$temp);
+		}
+		else
+		{
+			$temp=array(
+				"Questions"=>$this->cm->selectCommunityQuestionsByCommunityId($data),
+				"CommunityId"=>$cid
+			);
+			$this->load->view("Query",$temp);
+		}
+		// echo "<pre>";
+		// print_r($temp);
+		// echo "</pre>";
+		//$this->load->view("Query",$temp);
+	}
+
+	public function loadAllAnswersByCommunityQuestion($cqid,$cid)
+	{
+		$data=array("CommunityQuestionId"=>$cqid);
+		$temp=array(
+			"Answers"=>$this->cm->selectCommQuesAnsByCommunityQuestionId($data),
+			"Questions"=>$this->cm->selectCommunityQuestionsById($data),
+			"CommunityId"=>$cid
+		);
+		// echo "<pre>";
+		// print_r($temp);
+		// echo "</pre>";
+		$this->load->view("Answers",$temp);
+	}
 	
 	public function loadAddCommunityQuestion($cid)
 	{
@@ -253,5 +372,48 @@ class Community extends CI_Controller
 		$this->load->view("AddQuestion",$data);
 	}
 
+	public function addCommunityQuestion($cid)
+	{
+		$data=array(
+			"CommunityId"=>$this->input->post('txtCID'),
+			"UserId"=>$this->input->post('txtUserid'),
+			"Title"=>$this->input->post('txtTitle'),
+			"Question"=>$this->input->post('txtQuestion')
+		);
+		$this->cm->insertCommunityQuestions($data);
+		redirect("Community/loadAllCommunityMembersByCommunityId/$cid");
+		//print_r($data);
+	}
+
+	public function loadAddReply($cqid,$cid)
+	{
+		$data=array("CommunityQuestionId"=>$cqid,"CommunityId"=>$cid);
+		$this->load->view("Reply",$data);
+	}
+
+	public function addCommQuesAns($cqid,$cid)
+	{
+		$ans=$this->input->post('txtAnswer');
+		
+		if($ans=="") 
+		{
+			$data=array(
+				"Err"=>"Enter Your Answer",
+				"CommunityQuestionId"=>$cqid,
+				"CommunityId"=>$cid
+			);
+			$this->load->view("Reply",$data);
+		}
+		else
+		{
+			$data=array(
+				"CommunityQuestionId"=>$cqid,
+				"UserId"=>$this->input->post('txtUserid'),
+				"Answer"=>$ans
+			);
+			$this->cm->insertCommQuesAns($data);
+			redirect("Community/loadAllCommunityMembersByCommunityId/$cid");
+		}
+	}
 }
 ?>

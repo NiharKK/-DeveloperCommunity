@@ -46,7 +46,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="" title="">
+								<a href="<?= site_url('Article') ?>" title="">
 									<span><img src="<?= base_url() ?>resources/user/images/icon9.png" alt=""></span>
 									Articles
 								</a>

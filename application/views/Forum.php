@@ -53,6 +53,15 @@
 																<img src="<?php echo base_url('resources/shared/images/'.$p->PostImage)?>" alt="" height="500px" width="500px">
 															</ul>
 														</div>
+														<div class="job-status-bar">
+															<ul class="like-com">
+																<li>
+																	<a href="<?php echo site_url('Community/loadForumPost/'.$p->forumid."/".$CommunityId);?>" class="com"><i class="fas fa-comment-alt"></i>View More
+																	</a>
+																</li>
+															</ul>
+															
+														</div>
 													</div><!--post-bar end-->
 											
 												</div><!--posts-section end-->
@@ -98,6 +107,8 @@
 				</div> 
 			</div>
 		</main>
+
+
 
 
 		<div class="post-popup pst-pj">

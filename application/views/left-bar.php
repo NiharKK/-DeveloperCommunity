@@ -61,7 +61,7 @@
 		</ul>
 		<div class="cp-sec">
 			<img src="<?php echo base_url()?>resources/user/images/resources/Community.jpg" alt="" height="150px" width="250px">
-			<p><img src="<?php echo base_url('resources/user/')?>images/cp.png" alt="">Copyright 2020</p>
+			<p><img src="<?php echo base_url('resources/user/')?>images/cp.png" alt="">Copyright 2023</p>
 		</div>
 	</div><!--tags-sec end-->
 </div><!--main-left-sidebar end-->

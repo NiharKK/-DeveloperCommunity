@@ -93,7 +93,7 @@
 														<li><a href="<?php echo site_url('Community/loadAllRequest/'.$comminfo[0]->CommunityId) ?>" title="">MoreInfo</a></li>
 													</ul>
 													<ul class="quest-tags">
-														<li><a href="<?php ?>" title="">Queries</a></li>
+														<li><a href="<?php echo site_url('Community/loadCommunityQuestionsByCommunityId/'.$comminfo[0]->CommunityId) ?>" title="">Queries</a></li>
 													</ul>
 											<?php
 												}
@@ -104,7 +104,7 @@
 												{
 											?>
 													<ul class="quest-tags">
-														<li><a href="<?php ?>" title="">Queries</a></li>
+														<li><a href="<?php echo site_url('Community/loadCommunityQuestionsByCommunityId/'.$comminfo[0]->CommunityId) ?>" title="">Queries</a></li>
 													</ul>
 											<?php
 												}

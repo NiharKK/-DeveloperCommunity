@@ -66,6 +66,60 @@ class Meetup extends CI_Controller
 		// echo "</pre>";
 		
 	}
-	
+
+	public function addMeetUpMember($mid,$uid)
+	{
+		$data=array(
+			"MeetUpId"=>$mid,
+			"UserId"=>$uid
+		);
+		//print_r($data);
+		$this->mm->insertMeetUpMember($data);
+		$this->mm->deleteMeetUpRequest($data);
+		redirect("Meetup/loadMeetUpById/$mid");
+	}
+
+	public function removeMeetUpRequest($mid,$uid)
+	{
+		$data=array(
+			"MeetUpId"=>$mid,
+			"UserId"=>$uid
+		);
+		//print_r($data);
+		$this->mm->deleteMeetUpRequest($data);
+		redirect("Meetup/loadMeetUpById/$mid");
+	}
+
+	public function addMeetUpRequest($mid)
+	{
+		$data=array(
+			"MeetUpId"=>$mid,
+			"UserId"=>$_SESSION['uid']
+		);
+		//print_r($data);
+		$this->mm->insertMeetUpRequest($data);
+		redirect("Meetup/loadMeetUpById/$mid");
+	}
+
+	public function editMeetUp($cid,$mid)
+	{
+		$where=array(
+			"CommunityId"=>$cid,
+			"MeetUpId"=>$mid
+		);
+		$newdata=array(
+			"Topic"=>$this->input->post('txttopic'),
+			"Description"=>$this->input->post('txtdesc'),
+			"MeetUpDate"=>$this->input->post('txtmdate'),
+			"Address"=>$this->input->post('txtaddr'),
+			"TotalSeats"=>$this->input->post('txttseat'),
+			"TimingsFrom"=>$this->input->post('txttfrom'),
+			"TimingsTo"=>$this->input->post('txttto'),
+			"CityId"=>$this->input->post('txtcity')
+		);
+
+		$this->mm->updateMeetUp($newdata,$where);
+		redirect("Meetup/loadMeetUpById/$mid");
+	}
 }
 ?>
